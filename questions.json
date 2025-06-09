@@ -1,0 +1,230 @@
+{
+  "mcq": [],
+  "short_answer": [
+    {
+      "type": "short_answer",
+      "id": "q6",
+      "questionNumber": 6,
+      "questionText": "The figure below is made up of 4 identical squares. $P Q=18 \\mathrm{~cm}$. Find the unshaded area.",
+      "subQuestions": [],
+      "totalMarks": 1,
+      "image": {
+        "path": "ocr_images/img-0.jpeg",
+        "caption": "Question illustration",
+        "isOptional": false
+      }
+    },
+    {
+      "type": "short_answer",
+      "id": "q7",
+      "questionNumber": 7,
+      "questionText": "Alicia had 96 stickers. She used $\\frac{5}{6}$ of them and gave away $\\frac{1}{6}$ of the remaining stickers to her sister. How many stickers did she have left? Ans: $\\qquad$ $[3]$",
+      "subQuestions": [],
+      "totalMarks": 1
+    },
+    {
+      "type": "short_answer",
+      "id": "q8",
+      "questionNumber": 8,
+      "questionText": "The ratio of Henry's age to Jessie's age is $3: 2$ this year. In 5 years' time, their total age will be 100 years. Find Henry's age this year.",
+      "subQuestions": [],
+      "totalMarks": 1
+    },
+    {
+      "type": "short_answer",
+      "id": "q9",
+      "questionNumber": 9,
+      "questionText": "Two triangles WXV and WZV are overlapped in Rectangle TUVW below. Find the area of the figure WXYZV.",
+      "subQuestions": [],
+      "totalMarks": 1,
+      "image": {
+        "path": "ocr_images/img-0.jpeg",
+        "caption": "Question illustration",
+        "isOptional": false
+      }
+    },
+    {
+      "type": "short_answer",
+      "id": "q10",
+      "questionNumber": 10,
+      "questionText": "The rectangular tank shown below contains $7200 \\mathrm{~cm}^{3}$ of water.",
+      "subQuestions": [
+        {
+          "id": "q10a",
+          "text": "What fraction of the tank is filled with water? Leave your answer in its simplest form. Ans:",
+          "marks": 1,
+          "modelAnswer": "",
+          "keywords": []
+        },
+        {
+          "id": "q10a",
+          "text": "$\\qquad$",
+          "marks": 1,
+          "modelAnswer": "",
+          "keywords": []
+        },
+        {
+          "id": "q10b",
+          "text": "How much more water is needed to fill up the tank completely? Leave your answer in litres. Ans:",
+          "marks": 1,
+          "modelAnswer": "",
+          "keywords": []
+        },
+        {
+          "id": "q10b",
+          "text": "$\\qquad$ [2]",
+          "marks": 1,
+          "modelAnswer": "",
+          "keywords": []
+        }
+      ],
+      "totalMarks": 4,
+      "image": {
+        "path": "ocr_images/img-0.jpeg",
+        "caption": "Question illustration",
+        "isOptional": false
+      }
+    },
+    {
+      "type": "short_answer",
+      "id": "q11",
+      "questionNumber": 11,
+      "questionText": "In the figure below, rectangle $A B C D$ is made up of 6 identical smaller rectangles.",
+      "subQuestions": [
+        {
+          "id": "q11a",
+          "text": "Find the length of BC. Ans:",
+          "marks": 1,
+          "modelAnswer": "",
+          "keywords": []
+        },
+        {
+          "id": "q11a",
+          "text": "$\\qquad$",
+          "marks": 1,
+          "modelAnswer": "",
+          "keywords": []
+        },
+        {
+          "id": "q11b",
+          "text": "Find the area of the Triangle BDE. Ans:",
+          "marks": 1,
+          "modelAnswer": "",
+          "keywords": []
+        },
+        {
+          "id": "q11b",
+          "text": "$\\qquad$ [2]",
+          "marks": 1,
+          "modelAnswer": "",
+          "keywords": []
+        }
+      ],
+      "totalMarks": 4,
+      "image": {
+        "path": "ocr_images/img-0.jpeg",
+        "caption": "Question illustration",
+        "isOptional": false
+      }
+    },
+    {
+      "type": "short_answer",
+      "id": "q12",
+      "questionNumber": 12,
+      "questionText": "Daryi has a rectangular block of wood with only the top face painted.",
+      "subQuestions": [
+        {
+          "id": "q12a",
+          "text": "What is the volume of the block of wood? Ans:",
+          "marks": 1,
+          "modelAnswer": "",
+          "keywords": []
+        },
+        {
+          "id": "q12a",
+          "text": "$\\qquad$ $[1]$",
+          "marks": 1,
+          "modelAnswer": "",
+          "keywords": []
+        },
+        {
+          "id": "q12b",
+          "text": "Daryl cuts the largest possible cube from one corner of the block. What is the volume of the cube? Ans:",
+          "marks": 1,
+          "modelAnswer": "",
+          "keywords": []
+        },
+        {
+          "id": "q12b",
+          "text": "$\\qquad$ $[1]$",
+          "marks": 1,
+          "modelAnswer": "",
+          "keywords": []
+        },
+        {
+          "id": "q12c",
+          "text": "What is the area of the painted face of the remaining block of wood? Ans:",
+          "marks": 1,
+          "modelAnswer": "",
+          "keywords": []
+        },
+        {
+          "id": "q12c",
+          "text": "$\\qquad$ $[3]$",
+          "marks": 1,
+          "modelAnswer": "",
+          "keywords": []
+        }
+      ],
+      "totalMarks": 6,
+      "image": {
+        "path": "ocr_images/img-0.jpeg",
+        "caption": "Question illustration",
+        "isOptional": false
+      }
+    }
+  ],
+  "fill_blanks": [
+    {
+      "type": "fill_blanks",
+      "id": "q5",
+      "questionNumber": 5,
+      "questionText": "**Name:**",
+      "passage": "**Name:**___**Class:** 5___",
+      "blanks": [
+        {
+          "id": 1,
+          "position": 1,
+          "correctAnswer": "",
+          "marks": 1,
+          "alternatives": []
+        },
+        {
+          "id": 2,
+          "position": 2,
+          "correctAnswer": "",
+          "marks": 1,
+          "alternatives": []
+        }
+      ],
+      "totalMarks": 2
+    },
+    {
+      "type": "fill_blanks",
+      "id": "q60",
+      "questionNumber": 60,
+      "questionText": "**Duration:** 60 min **Parent's signature:**",
+      "passage": "**Duration:** 60 min **Parent's signature:**___",
+      "blanks": [
+        {
+          "id": 1,
+          "position": 1,
+          "correctAnswer": "",
+          "marks": 1,
+          "alternatives": []
+        }
+      ],
+      "totalMarks": 1
+    }
+  ]
+}

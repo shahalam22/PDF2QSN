@@ -1,0 +1,71 @@
+{
+    "type": "mcq",
+    "id": "string",
+    "questionNumber": "number",
+    "questionText": "string",
+    "image": {
+        "path": "string",
+        "caption": "string",
+        "isOptional": "boolean"
+    },
+    "options": [
+        {
+            "id": "number",
+            "text": "string",
+            "image": {
+                "path": "string",
+                "caption": "string",
+                "isOptional": "boolean"
+            }
+        }
+    ],
+    "correctAnswer": "number",
+    "marks": "number",
+    "explanation": "string"
+}
+
+
+
+
+{
+    "type": "short_answer",
+    "id": "string",
+    "questionNumber": "number",
+    "questionText": "string",
+    "image": {
+        "path": "string",
+        "caption": "string",
+        "isOptional": "boolean"
+    },
+    "subQuestions": [
+        {
+            "id": "string",
+            "text": "string",
+            "marks": "number",
+            "modelAnswer": "string",
+            "keywords": ["string"]
+        }
+    ],
+    "totalMarks": "number"
+}
+
+
+
+
+{
+    "type": "fill_blanks",
+    "id": "string",
+    "questionNumber": "number",
+    "questionText": "string",
+    "passage": "string",
+    "blanks": [
+        {
+            "id": "number",
+            "position": "number",
+            "correctAnswer": "string",
+            "marks": "number",
+            "alternatives": ["string"]
+        }
+    ],
+    "totalMarks": "number"
+}
