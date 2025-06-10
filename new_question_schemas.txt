@@ -1,0 +1,152 @@
+// Category 1: MCQ, True-False, Vocabulary question
+{
+  "category": "Objective Selection Questions",
+  "question_type": ["MCQ", "True-False", "Vocabulary"],
+  "question_id": "string",
+  "marks": "number",
+  "subject": "string",
+  "level": "string",
+  "term": "string",
+  "school": "string",
+  "content": {
+    "stem": "string",
+    "options": [
+      {
+        "option_id": "number or string (e.g., 1, 2, 3, 4 or T, F)",
+        "text": "string"
+      }
+    ],
+    "media": {
+      "type": ["image", "none"],
+      "url": "string",
+      "description": "string"
+    }
+  },
+  "response_format": {
+    "type": "single_select",
+    "input_method": "radio_button",
+    "accepted_values": ["1", "2", "3", "4", "T", "F"]
+  },
+  "answer_key": {
+    "correct_option": "string",
+    "explanation": "string"
+  },
+  "metadata": {
+    "page_number": "string",
+    "bp_code": "string",
+    "created_at": "datetime",
+    "updated_at": "datetime"
+  }
+}
+
+
+
+
+// Mergerd Category 2 & 3: Short question, Fill in the blanks, Ordering, Open-ended, Structured, Calculation-Based
+
+{
+  "category": "Structured and Reasoning Responses",
+  "question_type": [
+    "Short Question",
+    "Fill in the Blanks",
+    "Ordering",
+    "Open-Ended",
+    "Structured",
+    "Calculation-Based"
+  ],
+  "question_id": "string",
+  "marks": "number",
+  "subject": "string",
+  "level": "string",
+  "term": "string",
+  "school": "string",
+  "content": {
+    "stem": "string",
+    "media": {
+      "type": ["image", "none"],
+      "url": "string",
+      "description": "string"
+    },
+    "sub_questions": [
+      {
+        "part_id": "string (e.g., a, b)",
+        "text": "string",
+        "blank_count": "number (for Fill in the Blanks, default 0)",
+        "ordering_items": [
+          {
+            "item_id": "string",
+            "text": "string"
+          }
+        ],
+        "media": {
+          "type": ["image", "none"],
+          "url": "string",
+          "description": "string"
+        }
+      }
+    ]
+  },
+  "response_format": {
+    "main_answer": {
+      "enabled": "boolean",
+      "type": ["text", "number", "fraction", "sequence"],
+      "input_method": ["text_box", "equation_editor"],
+      "format_instruction": "string (e.g., 'Type numbers separated by commas and spaces')",
+      "expected_length": "string (e.g., 'word', 'number', 'sequence')",
+      "unit": "string (optional, e.g., 'cm', 'litres')"
+    },
+    "sub_answers": [
+      {
+        "part_id": "string (e.g., a, b)",
+        "type": ["text", "number", "fraction", "sequence"],
+        "input_method": ["text_box", "equation_editor"],
+        "format_instruction": "string",
+        "expected_length": "string",
+        "unit": "string (optional)"
+      }
+    ],
+    "working_required": "boolean",
+    "working_space": "text"
+  },
+  "answer_key": {
+    "main_answer": {
+      "correct_answer": "string",
+      "alternate_answers": ["string"],
+      "validation_rule": "string (e.g., 'comma-separated numbers')",
+      "explanation": "string",
+      "working_steps": [
+        {
+          "step": "string",
+          "marks": "number"
+        }
+      ],
+      "scoring_criteria": "string (for subjective answers)"
+    },
+    "sub_answers": [
+      {
+        "part_id": "string",
+        "correct_answer": "string",
+        "alternate_answers": ["string"],
+        "validation_rule": "string",
+        "explanation": "string",
+        "working_steps": [
+          {
+            "step": "string",
+            "marks": "number"
+          }
+        ],
+        "scoring_criteria": "string (for subjective answers)"
+      }
+    ],
+  },
+  "metadata": {
+    "page_number": "string",
+    "bp_code": "string",
+    "created_at": "datetime",
+    "updated_at": "datetime"
+  }
+}
+
+
+
+
