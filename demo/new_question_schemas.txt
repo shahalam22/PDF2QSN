@@ -150,3 +150,126 @@
 
 
 
+
+
+-----------------------------------------------------------------------
+Simplifed
+
+
+
+
+
+
+
+// Category 1: MCQ, True-False, Vocabulary question
+{
+  "category": "Objective Selection Questions",
+  "question_type": ["mcq", "true_false", "vocabulary"],
+  "question_id": "string",
+  "marks": "number",
+  "content": {
+    "stem": "string",
+    "options": [
+      {
+        "option_id": "number or string (e.g., 1, 2, 3, 4 or T, F)",
+        "text": "string"
+      }
+    ],
+    "media": {
+      "url": "string",
+      "description": "string"
+    }
+  },
+  "answer_key": {
+    "correct_option": "string",
+    "explanation": "string"
+  },
+  "metadata": {
+    "subject": "string",
+    "level": "string",
+    "term": "string",
+    "school": "string",
+    "created_at": "datetime",
+    "updated_at": "datetime"
+  }
+}
+
+
+
+
+// Mergerd Category 2 & 3: Short question, Fill in the blanks, Ordering, Open-ended, Structured, Calculation-Based
+
+{
+  "category": "explanation",
+  "question_type": [
+    "short_question",
+    "fill_the_blanks",
+    "ordering",
+    "open_ended",
+    "structured",
+    "calculation"
+  ],
+  "question_id": "string",
+  "marks": "number",
+  "content": {
+    "stem": "string",
+    "media": {
+      "url": "string",
+      "description": "string"
+    },
+    "sub_questions": [
+      {
+        "part_id": "string (e.g., a, b)",
+        "text": "string",
+        "blank_count": "number (for Fill in the Blanks, default 0)",
+        "ordering_items": [
+          {
+            "item_id": "string",
+            "text": "string"
+          }
+        ],
+        "media": {
+          "url": "string",
+          "description": "string"
+        }
+      }
+    ]
+  },
+  "answer_key": {
+    "main_answer": {
+      "correct_answer": "string",
+      "alternate_answers": ["string"],
+      "explanation": "string",
+      "working_steps": [
+        {
+          "step": "string",
+          "marks": "number"
+        }
+      ],
+      "scoring_criteria": "string (for subjective answers)"
+    },
+    "sub_answers": [
+      {
+        "part_id": "string",
+        "correct_answer": "string",
+        "alternate_answers": ["string"],
+        "explanation": "string",
+        "working_steps": [
+          {
+            "step": "string",
+            "marks": "number"
+          }
+        ],
+        "scoring_criteria": "string (for subjective answers)"
+      }
+    ],
+  },
+  "metadata": {
+    "subject": "string",
+    "level": "string",
+    "term": "string",
+    "school": "string",
+    "created_at": "datetime",
+    "updated_at": "datetime"
+  }
+}
