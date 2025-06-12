@@ -31,7 +31,26 @@ def display_questions(questions):
                     st.info(f"Explanation: {q['explanation']}")
                 st.write(f"Marks: {q['marks']}")
 
-    # Display Short Answer Questions
+    # # Display Short Answer Questions
+    # if questions.get("short_answer"):
+    #     st.header("Short Answer Questions")
+    #     for q in questions["short_answer"]:
+    #         with st.expander(f"Question {q['questionNumber']}: {q['questionText'][:100]}..."):
+    #             st.write(q["questionText"])
+    #             if q.get("image") and q["image"].get("path"):
+    #                 st.image(q["image"]["path"], caption=q["image"].get("caption", ""))
+                
+    #             for sub_q in q.get("subQuestions", []):
+    #                 st.subheader(f"Part {sub_q['id']}")
+    #                 st.write(sub_q["text"])
+    #                 with st.expander("View Answer"):
+    #                     st.write(f"Model Answer: {sub_q['modelAnswer']}")
+    #                     st.write(f"Keywords: {', '.join(sub_q['keywords'])}")
+    #                     st.write(f"Marks: {sub_q['marks']}")
+                
+    #             st.write(f"Total Marks: {q['totalMarks']}")
+
+    # Fixed Short Answer Questions section
     if questions.get("short_answer"):
         st.header("Short Answer Questions")
         for q in questions["short_answer"]:
@@ -43,12 +62,15 @@ def display_questions(questions):
                 for sub_q in q.get("subQuestions", []):
                     st.subheader(f"Part {sub_q['id']}")
                     st.write(sub_q["text"])
-                    with st.expander("View Answer"):
-                        st.write(f"Model Answer: {sub_q['modelAnswer']}")
-                        st.write(f"Keywords: {', '.join(sub_q['keywords'])}")
-                        st.write(f"Marks: {sub_q['marks']}")
+                    # Using columns instead of nested expander
+                    st.markdown("**Answer Details:**")
+                    st.markdown(f"🎯 **Model Answer:** {sub_q['modelAnswer']}")
+                    st.markdown(f"🔑 **Keywords:** {', '.join(sub_q['keywords'])}")
+                    st.markdown(f"📝 **Marks:** {sub_q['marks']}")
                 
                 st.write(f"Total Marks: {q['totalMarks']}")
+
+
 
     # Display Fill in the Blanks Questions
     if questions.get("fill_blanks"):
@@ -89,6 +111,14 @@ def main():
             
             except Exception as e:
                 st.error(f"Error connecting to the server: {str(e)}")
+
+
+    # with open('llm_questions.json', 'r', encoding='utf-8') as f:
+    #     response = json.load(f)
+    #     st.success(response["message"])
+    #     questions = response["questions"]
+    #     display_questions(questions)
+
 
 if __name__ == "__main__":
     main()

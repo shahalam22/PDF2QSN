@@ -1,0 +1,131 @@
+{
+  "message": "File processed successfully",
+  "questions": {
+    "mcq": [],
+    "short_answer": [
+      {
+        "type": "short_answer",
+        "id": "q1",
+        "questionNumber": 1,
+        "questionText": "Classify leaves A, B, C and D according to the type of leaf edges.",
+        "image": {
+          "path": "exported_images/img-4.jpeg",
+          "caption": "Leaves A, B, C, and D",
+          "isOptional": false
+        },
+        "subQuestions": [],
+        "totalMarks": 2
+      },
+      {
+        "type": "short_answer",
+        "id": "q2",
+        "questionNumber": 2,
+        "questionText": "How are the veins in leaf B arranged?",
+        "image": {
+          "path": "",
+          "caption": "",
+          "isOptional": true
+        },
+        "subQuestions": [],
+        "totalMarks": 1
+      },
+      {
+        "type": "short_answer",
+        "id": "q3",
+        "questionNumber": 3,
+        "questionText": "In the box below, draw leaf A and label the parts of the leaf with the following: leaf blade, leaf stalk, main vein.",
+        "image": {
+          "path": "exported_images/img-5.jpeg",
+          "caption": "Draw and label leaf A",
+          "isOptional": false
+        },
+        "subQuestions": [],
+        "totalMarks": 2
+      },
+      {
+        "type": "short_answer",
+        "id": "q4",
+        "questionNumber": 4,
+        "questionText": "State one function of leaves.",
+        "image": {
+          "path": "",
+          "caption": "",
+          "isOptional": true
+        },
+        "subQuestions": [],
+        "totalMarks": 1
+      },
+      {
+        "type": "short_answer",
+        "id": "q5",
+        "questionNumber": 5,
+        "questionText": "Based on your results, can you conclude that object X is matter? Explain your answer.",
+        "image": {
+          "path": "",
+          "caption": "",
+          "isOptional": true
+        },
+        "subQuestions": [],
+        "totalMarks": 1
+      },
+      {
+        "type": "short_answer",
+        "id": "q6",
+        "questionNumber": 6,
+        "questionText": "Looking at the table of results above, is it true that objects with less mass have less volume? Explain your answer.",
+        "image": {
+          "path": "",
+          "caption": "",
+          "isOptional": true
+        },
+        "subQuestions": [],
+        "totalMarks": 1
+      },
+      {
+        "type": "short_answer",
+        "id": "q7",
+        "questionNumber": 7,
+        "questionText": "State a property of the styrofoam ball that does not allow its volume to be measured in the same way as you did for object X.",
+        "image": {
+          "path": "",
+          "caption": "",
+          "isOptional": true
+        },
+        "subQuestions": [],
+        "totalMarks": 1
+      }
+    ],
+    "fill_blanks": [
+      {
+        "type": "fill_blanks",
+        "id": "q8",
+        "questionNumber": 8,
+        "questionText": "The leaf makes food for the plant.",
+        "passage": "The leaf ________ makes food ________ for the plant.",
+        "blanks": [
+          {
+            "id": 1,
+            "position": 1,
+            "correctAnswer": "makes",
+            "marks": 1,
+            "alternatives": [
+              "produces",
+              "creates"
+            ]
+          },
+          {
+            "id": 2,
+            "position": 2,
+            "correctAnswer": "for",
+            "marks": 1,
+            "alternatives": [
+              "to",
+              "towards"
+            ]
+          }
+        ],
+        "totalMarks": 2
+      }
+    ]
+  }
+}
