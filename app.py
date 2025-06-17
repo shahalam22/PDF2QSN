@@ -6,7 +6,12 @@ from dotenv import load_dotenv
 from mistralai import Mistral
 import base64
 import json
-from typing import Dict
+import re
+import torch
+from transformers import BertTokenizer, BertModel
+from bs4 import BeautifulSoup
+import markdown
+from typing import Dict, Tuple
 
 
 app = FastAPI(title="PDF OCR and question Processor")
@@ -19,9 +24,16 @@ os.makedirs(IMAGE_DIR, exist_ok=True)
 load_dotenv()
 client = Mistral(api_key=os.environ.get("MISTRAL_API_KEY"))
 
+# BERT model and tokenizer for similarity comparison
+tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+model = BertModel.from_pretrained('bert-base-uncased')
+model.eval()
+
+
 def data_uri_to_bytes(data_uri: str) -> bytes:
     _, encoded = data_uri.split(',', 1)
     return base64.b64decode(encoded)
+
 
 def export_image(image) -> str:
     parsed_image = data_uri_to_bytes(image.image_base64)
@@ -29,6 +41,7 @@ def export_image(image) -> str:
     with open(image_path, 'wb') as file:
         file.write(parsed_image)
     return image_path
+
 
 def generate_questions(content):
     prompt = f"""
@@ -139,7 +152,94 @@ def generate_questions(content):
         }
 
 
-async def process_pdf(file_path: str) -> str:
+def clean_text(text):
+    """Clean text by removing special characters, latex expressions and normalizing whitespace"""
+    # Remove LaTeX expressions
+    text = re.sub(r'\$.*?\$', '', text)
+    # Remove special characters but keep spaces
+    text = re.sub(r'[^\w\s]', ' ', text)
+    # Normalize whitespace
+    text = ' '.join(text.split())
+    return text.lower().strip()
+
+
+def extract_text_from_json(questions_json):
+    """Extract all question text from questions JSON"""
+    questions_text = []
+    
+    # Extract MCQ questions
+    for q in questions_json.get('mcq', []):
+        questions_text.append(q['questionText'])
+        # Include options if they exist
+        if 'options' in q:
+            for opt in q['options']:
+                if 'text' in opt:
+                    questions_text.append(opt['text'])
+    
+    # Extract short answer questions
+    for q in questions_json.get('short_answer', []):
+        questions_text.append(q['questionText'])
+    
+    # Extract fill in the blanks questions
+    for q in questions_json.get('fill_blanks', []):
+        questions_text.append(q['questionText'])
+        if 'passage' in q:
+            questions_text.append(q['passage'])
+    
+    return clean_text(' '.join(questions_text))
+
+
+def get_bert_embedding(text, model, tokenizer):
+    """Get BERT embedding for a text"""
+    # Tokenize and get model output
+    with torch.no_grad():
+        inputs = tokenizer(text, return_tensors="pt", padding=True, truncation=True, max_length=512)
+        outputs = model(**inputs)
+        # Use [CLS] token embedding as the text embedding
+        return outputs.last_hidden_state[:, 0, :].numpy()
+
+
+def calculate_similarity(markdown_content, questions_json):
+    """Calculate cosine similarity between markdown content and extracted questions"""
+    # Clean the markdown content
+    md_text = clean_text(markdown_content)
+    
+    # Extract and clean the question text from JSON
+    json_text = extract_text_from_json(questions_json)
+    
+    # Get embeddings
+    emb1 = get_bert_embedding(md_text, model, tokenizer)
+    emb2 = get_bert_embedding(json_text, model, tokenizer)
+    
+    # Calculate cosine similarity
+    similarity = torch.nn.functional.cosine_similarity(
+        torch.tensor(emb1), 
+        torch.tensor(emb2)
+    )[0].item()
+    
+    # Create similarity result
+    result = {
+        "similarity_score": similarity,
+        "percentage_match": similarity * 100,
+        "text_length": {
+            "markdown_text_length": len(md_text),
+            "json_text_length": len(json_text)
+        },
+        "interpretation": ""
+    }
+    
+    # Add interpretation
+    if similarity >= 0.8:
+        result["interpretation"] = "High similarity - The OCR output matches well with the extracted questions"
+    elif similarity >= 0.6:
+        result["interpretation"] = "Moderate similarity - Most content is captured but there may be some differences"
+    else:
+        result["interpretation"] = "Low similarity - Significant differences between OCR and extracted questions"
+    
+    return result
+
+
+async def process_pdf(file_path: str) -> Tuple[str, Dict]:
     with open(file_path, "rb") as pdf_file:
         uploaded_file = client.files.upload(
             file={
@@ -173,7 +273,8 @@ async def process_pdf(file_path: str) -> str:
     
     questions = generate_questions(content)
     
-    return questions
+    # Return both content and questions
+    return content, questions
 
 
 @app.post("/upload/")
@@ -189,11 +290,17 @@ async def upload_file(file: UploadFile = File(...)) -> Dict:
         with open(file_path, "wb") as buffer:
             content = await file.read()
             buffer.write(content)        
-            questions = await process_pdf(file_path)
+            
+        # Get both content and questions from process_pdf
+        markdown_content, questions = await process_pdf(file_path)
+        
+        # Calculate similarity between OCR content and extracted questions
+        similarity_result = calculate_similarity(markdown_content, questions)
         
         return {
             "message": "File processed successfully",
-            "questions": questions
+            "questions": questions,
+            "similarity": similarity_result
         }
 
     except Exception as e:
@@ -201,6 +308,7 @@ async def upload_file(file: UploadFile = File(...)) -> Dict:
             status_code=500,
             content={"error": str(e)}
         )
+
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)

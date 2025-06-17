@@ -31,26 +31,7 @@ def display_questions(questions):
                     st.info(f"Explanation: {q['explanation']}")
                 st.write(f"Marks: {q['marks']}")
 
-    # # Display Short Answer Questions
-    # if questions.get("short_answer"):
-    #     st.header("Short Answer Questions")
-    #     for q in questions["short_answer"]:
-    #         with st.expander(f"Question {q['questionNumber']}: {q['questionText'][:100]}..."):
-    #             st.write(q["questionText"])
-    #             if q.get("image") and q["image"].get("path"):
-    #                 st.image(q["image"]["path"], caption=q["image"].get("caption", ""))
-                
-    #             for sub_q in q.get("subQuestions", []):
-    #                 st.subheader(f"Part {sub_q['id']}")
-    #                 st.write(sub_q["text"])
-    #                 with st.expander("View Answer"):
-    #                     st.write(f"Model Answer: {sub_q['modelAnswer']}")
-    #                     st.write(f"Keywords: {', '.join(sub_q['keywords'])}")
-    #                     st.write(f"Marks: {sub_q['marks']}")
-                
-    #             st.write(f"Total Marks: {q['totalMarks']}")
-
-    # Fixed Short Answer Questions section
+    # Display Short Answer Questions
     if questions.get("short_answer"):
         st.header("Short Answer Questions")
         for q in questions["short_answer"]:
@@ -69,8 +50,6 @@ def display_questions(questions):
                     st.markdown(f"📝 **Marks:** {sub_q['marks']}")
                 
                 st.write(f"Total Marks: {q['totalMarks']}")
-
-
 
     # Display Fill in the Blanks Questions
     if questions.get("fill_blanks"):
@@ -103,8 +82,23 @@ def main():
                 response = requests.post("http://localhost:8000/upload/", files=files)
                 
                 if response.status_code == 200:
-                    st.success(response.json()["message"])
-                    questions = response.json()["questions"]
+                    response_data = response.json()
+                    st.success(response_data["message"])
+                    
+                    # Display similarity percentage match
+                    if "similarity" in response_data and "percentage_match" in response_data["similarity"]:
+                        match_percentage = response_data["similarity"]["percentage_match"]
+                        st.metric(
+                            label="Content Similarity Match", 
+                            value=f"{match_percentage:.2f}%",
+                            delta="between extracted text and generated questions"
+                        )
+                        
+                        # Display interpretation if available
+                        if "interpretation" in response_data["similarity"]:
+                            st.info(response_data["similarity"]["interpretation"])
+                    
+                    questions = response_data["questions"]
                     display_questions(questions)
                 else:
                     st.error(f"Error: {response.json().get('error', 'Unknown error occurred')}")
